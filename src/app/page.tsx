@@ -21,29 +21,31 @@ export default async function Home() {
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             <span className="text-gray-600">majn</span>-stack
           </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg text-gray-600">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg text-gray-600">
-                Learn more about majn-stack, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">Next.js 15</h3>
+              <p className="text-gray-600">
+                Server components, app router, and blazing fast performance
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">NextAuth</h3>
+              <p className="text-gray-600">
+                Secure authentication with multiple providers and sessions
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">Prisma</h3>
+              <p className="text-gray-600">
+                Type-safe database access with migrations and studio
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold">tRPC</h3>
+              <p className="text-gray-600">
+                End-to-end typesafe APIs without code generation
+              </p>
+            </div>
           </div>
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-gray-700">
