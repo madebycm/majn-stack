@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100 text-black">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             <TextEffect per="char" preset="fade">
@@ -24,39 +24,39 @@ export default async function Home() {
             </TextEffect>
           </h1>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
-            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex flex-col gap-3 rounded-xl border bg-card p-6">
               <h3 className="text-xl font-semibold">Next.js 15</h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Server components, app router, and blazing fast performance
               </p>
             </div>
-            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex flex-col gap-3 rounded-xl border bg-card p-6">
               <h3 className="text-xl font-semibold">NextAuth</h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Secure authentication with multiple providers and sessions
               </p>
             </div>
-            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex flex-col gap-3 rounded-xl border bg-card p-6">
               <h3 className="text-xl font-semibold">Prisma</h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 Type-safe database access with migrations and studio
               </p>
             </div>
-            <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex flex-col gap-3 rounded-xl border bg-card p-6">
               <h3 className="text-xl font-semibold">tRPC</h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 End-to-end typesafe APIs without code generation
               </p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center justify-center gap-4">
-              <p className="text-center text-2xl text-gray-700">
+              <p className="text-center text-2xl text-muted-foreground">
                 {session && <span>Logged in as {session.user?.username} ({session.user?.role})</span>}
               </p>
               <Link
                 href={session ? "/api/auth/signout" : "/api/auth/signin"}
-                className="rounded-full bg-black px-10 py-3 font-semibold text-white no-underline transition hover:bg-gray-800"
+                className="rounded-full bg-primary px-10 py-3 font-semibold text-primary-foreground no-underline transition hover:bg-primary/90"
               >
                 {session ? "Sign out" : "Sign in"}
               </Link>
@@ -64,7 +64,7 @@ export default async function Home() {
           </div>
 
           {session?.user && (
-            <div className="w-full max-w-4xl px-4">
+            <div className="w-full max-w-4xl">
               <h2 className="text-2xl font-bold mb-4 text-center">Registered Users</h2>
               <UsersTable />
             </div>
