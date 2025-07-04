@@ -1,10 +1,11 @@
 // @author madebycm (2025)
 // Main landing page with authentication and tRPC integration
 import Link from "next/link";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
 
-import { LatestPost } from "~/app/_components/post";
-import { auth } from "~/server/auth";
-import { api, HydrateClient } from "~/trpc/server";
+import { LatestPost } from "@/app/_components/post";
+import { auth } from "@/server/auth";
+import { api, HydrateClient } from "@/trpc/server";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -19,7 +20,9 @@ export default async function Home() {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100 text-black">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            <span className="text-gray-600">majn</span>-stack
+            <TextEffect per="char" preset="fade">
+              majn-stack
+            </TextEffect>
           </h1>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
             <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">

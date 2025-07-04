@@ -1,11 +1,11 @@
 // @author madebycm (2025)
 // Root layout configuration for Next.js app with metadata and providers
-import "~/styles/globals.css";
+import "@/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
-import { TRPCReactProvider } from "~/trpc/react";
+import { TRPCReactProvider } from "@/trpc/react";
 
 export const metadata: Metadata = {
   title: "majn-stack",
