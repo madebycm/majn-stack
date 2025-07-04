@@ -1,5 +1,6 @@
-import { postRouter } from "@/server/api/routers/post";
-import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
+// Main API router - all your API procedures are defined here
+import { postRouter } from "@/backend/api/routers/post";
+import { createCallerFactory, createTRPCRouter } from "@/backend/api/trpc";
 
 /**
  * This is the primary router for your server.

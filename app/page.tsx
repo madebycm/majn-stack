@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 
 import { LatestPost } from "@/app/_components/post";
-import { auth } from "@/server/auth";
+import { auth } from "@/backend/auth";
 import { api, HydrateClient } from "@/trpc/server";
 
 export default async function Home() {
