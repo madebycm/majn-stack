@@ -1,5 +1,5 @@
 // Main API router - all your API procedures are defined here
-import { postRouter } from "@/backend/api/routers/post";
+import { userRouter } from "@/backend/api/routers/user";
 import { createCallerFactory, createTRPCRouter } from "@/backend/api/trpc";
 
 /**
@@ -8,7 +8,7 @@ import { createCallerFactory, createTRPCRouter } from "@/backend/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
+  user: userRouter,
 });
 
 // export type definition of API
@@ -18,7 +18,7 @@ export type AppRouter = typeof appRouter;
  * Create a server-side caller for the tRPC API.
  * @example
  * const trpc = createCaller(createContext);
- * const res = await trpc.post.all();
- *       ^? Post[]
+ * const res = await trpc.user.getAll();
+ *       ^? User[]
  */
 export const createCaller = createCallerFactory(appRouter);

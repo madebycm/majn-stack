@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 
-import { LatestPost } from "@/app/_components/post";
+import { UsersTable } from "@/app/_components/users-table";
 import { auth } from "@/backend/auth";
 import { api, HydrateClient } from "@/trpc/server";
 
 export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
   const session = await auth();
 
   if (session?.user) {
-    void api.post.getLatest.prefetch();
+    void api.user.getAll.prefetch();
   }
 
   return (
@@ -50,14 +49,10 @@ export default async function Home() {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-gray-700">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
-
+          <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center justify-center gap-4">
               <p className="text-center text-2xl text-gray-700">
-                {session && <span>Logged in as {session.user?.name}</span>}
+                {session && <span>Logged in as {session.user?.username} ({session.user?.role})</span>}
               </p>
               <Link
                 href={session ? "/api/auth/signout" : "/api/auth/signin"}
@@ -68,7 +63,12 @@ export default async function Home() {
             </div>
           </div>
 
-          {session?.user && <LatestPost />}
+          {session?.user && (
+            <div className="w-full max-w-4xl px-4">
+              <h2 className="text-2xl font-bold mb-4 text-center">Registered Users</h2>
+              <UsersTable />
+            </div>
+          )}
         </div>
       </main>
     </HydrateClient>

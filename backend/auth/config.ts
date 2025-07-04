@@ -5,6 +5,7 @@ import { type DefaultSession, type NextAuthConfig } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 
 import { db } from "@/backend/db";
 
@@ -18,15 +19,17 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
-      // ...other properties
-      // role: UserRole;
+      username: string;
+      role: string;
     } & DefaultSession["user"];
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    id: string;
+    username: string;
+    email: string | null;
+    role: string;
+  }
 }
 
 /**
@@ -46,15 +49,36 @@ export const authConfig = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // Always accept username "dev" with password "123"
-        if (credentials?.username === "dev" && credentials?.password === "123") {
-          return {
-            id: "dev-user",
-            name: "Dev User",
-            email: "dev@example.com",
-          };
+        if (!credentials?.username || !credentials?.password) {
+          return null;
         }
-        return null;
+
+        // Look up user in database
+        const user = await db.user.findUnique({
+          where: { username: credentials.username as string },
+        });
+
+        if (!user) {
+          return null;
+        }
+
+        // Verify password
+        const passwordMatch = await bcrypt.compare(
+          credentials.password as string,
+          user.password
+        );
+
+        if (!passwordMatch) {
+          return null;
+        }
+
+        // Return user object for session
+        return {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        };
       },
     }),
     /**
@@ -69,12 +93,24 @@ export const authConfig = {
   ],
   adapter: PrismaAdapter(db),
   callbacks: {
-    session: ({ session, user }) => ({
+    session: ({ session, token }) => ({
       ...session,
       user: {
         ...session.user,
-        id: user.id,
+        id: token.sub!,
+        username: token.username as string,
+        role: token.role as string,
       },
     }),
+    jwt: ({ token, user }) => {
+      if (user) {
+        token.username = user.username;
+        token.role = user.role;
+      }
+      return token;
+    },
+  },
+  session: {
+    strategy: "jwt",
   },
 } satisfies NextAuthConfig;

@@ -39,6 +39,9 @@ npm install
 # Set up database
 npx prisma db push
 
+# Seed database with initial admin user
+npx prisma db seed
+
 # Run development server
 npm run dev
 ```
@@ -56,6 +59,7 @@ Default credentials: `dev` / `123`
 - **Tailwind CSS** - Styling
 - **Motion** - Animations
 - **Motion Primitives** - Beautiful animated components
+- **shadcn/ui** - High-quality UI components
 
 ## Motion Primitives
 
@@ -86,3 +90,28 @@ export function Hero() {
 ```
 
 Components are added to `/components/motion-primitives/`.
+
+## shadcn/ui
+
+Modern, accessible UI components that you can copy and customize.
+
+### Install a component
+
+```bash
+# Add a specific component
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add table
+```
+
+### Usage example
+
+```tsx
+import { Button } from '@/components/ui/button';
+
+export function MyComponent() {
+  return <Button variant="outline">Click me</Button>;
+}
+```
+
+Components are added to `/components/ui/`.
