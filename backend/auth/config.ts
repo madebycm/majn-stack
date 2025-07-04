@@ -1,9 +1,6 @@
 // @author madebycm (2025)
 // Authentication configuration for NextAuth.js with credential-based login
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
@@ -25,9 +22,7 @@ declare module "next-auth" {
   }
 
   interface User {
-    id: string;
     username: string;
-    email: string | null;
     role: string;
   }
 }
@@ -91,7 +86,6 @@ export const authConfig = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
-  adapter: PrismaAdapter(db),
   callbacks: {
     session: ({ session, token }) => ({
       ...session,
