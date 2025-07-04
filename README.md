@@ -55,3 +55,34 @@ Default credentials: `dev` / `123`
 - **NextAuth** - Authentication
 - **Tailwind CSS** - Styling
 - **Motion** - Animations
+- **Motion Primitives** - Beautiful animated components
+
+## Motion Primitives
+
+Pre-built animated components for a polished UI.
+
+### Install a component
+
+```bash
+# List available components
+npx motion-primitives list
+
+# Add a specific component
+npx motion-primitives add text-shimmer
+```
+
+### Usage example
+
+```tsx
+import { TextEffect } from '@/components/motion-primitives/text-effect';
+
+export function Hero() {
+  return (
+    <TextEffect per="char" preset="fade">
+      Welcome to majn-stack
+    </TextEffect>
+  );
+}
+```
+
+Components are added to `/components/motion-primitives/`.
