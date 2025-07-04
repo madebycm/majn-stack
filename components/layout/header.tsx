@@ -18,9 +18,9 @@ export function Navigation9({ children }: { children: React.ReactNode }) {
   return (
     <div
       ref={ref}
-      className='relative mx-auto h-[100vh] max-w-7xl overflow-y-auto px-6 lg:px-8'
+      className='relative h-[100vh] overflow-y-auto'
     >
-      <div className='sticky top-8'>
+      <div className='sticky top-8 z-50 mx-auto max-w-7xl px-6 lg:px-8'>
         <div
           className={cn(
             `flex w-full items-center justify-between rounded-full border transition-all duration-200 ease-out`,
@@ -68,10 +68,8 @@ export function Navigation9({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {/* main content */}
-      <div className='mt-32'>
-        {children}
-      </div>
+      {/* main content - full width, no padding */}
+      {children}
     </div>
   );
 }

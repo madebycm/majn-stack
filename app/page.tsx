@@ -17,8 +17,8 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+      <div className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-50 to-slate-100 -mt-24">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-12 px-4 pt-40 pb-16">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             <TextEffect per="char" preset="fade">
               majn-stack
@@ -79,7 +79,7 @@ export default async function Home() {
             </div>
           )}
         </div>
-      </main>
+      </div>
     </HydrateClient>
   );
 }
