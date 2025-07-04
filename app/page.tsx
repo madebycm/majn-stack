@@ -6,6 +6,7 @@ import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { UsersTable } from "@/app/_components/users-table";
 import { auth } from "@/backend/auth";
 import { api, HydrateClient } from "@/trpc/server";
+import { SignOutDialog } from "@/components/layout/sign-out-dialog";
 
 export default async function Home() {
   const session = await auth();
@@ -54,12 +55,20 @@ export default async function Home() {
               <p className="text-center text-2xl text-muted-foreground">
                 {session && <span>Logged in as {session.user?.username} ({session.user?.role})</span>}
               </p>
-              <Link
-                href={session ? "/api/auth/signout" : "/api/auth/signin"}
-                className="rounded-full bg-primary px-10 py-3 font-semibold text-primary-foreground no-underline transition hover:bg-primary/90"
-              >
-                {session ? "Sign out" : "Sign in"}
-              </Link>
+              {session ? (
+                <SignOutDialog>
+                  <button className="rounded-full bg-primary px-10 py-3 font-semibold text-primary-foreground no-underline transition hover:bg-primary/90">
+                    Sign out
+                  </button>
+                </SignOutDialog>
+              ) : (
+                <Link
+                  href="/api/auth/signin"
+                  className="rounded-full bg-primary px-10 py-3 font-semibold text-primary-foreground no-underline transition hover:bg-primary/90"
+                >
+                  Sign in
+                </Link>
+              )}
             </div>
           </div>
 

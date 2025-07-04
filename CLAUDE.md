@@ -1,0 +1,2 @@
+# Check for components in components/[motion-primitives|ui(radix()], use existing for new front-end, don't add new,unless not existing. Ensure only one component across libraries, ie (bad === motion-primitives/dialog.tsx && ui/dialog.tsx === true, reason: two dialogs)
+# Mobile-first approach. Bottom-up approach.
