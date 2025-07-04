@@ -6,6 +6,7 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import { Navigation9 } from "@/components/layout/header";
 
 export const metadata: Metadata = {
   title: "majn-stack",
@@ -27,7 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <Navigation9>
+            {children}
+          </Navigation9>
+        </TRPCReactProvider>
       </body>
     </html>
   );

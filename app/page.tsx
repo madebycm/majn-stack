@@ -2,11 +2,11 @@
 // Main landing page with authentication and tRPC integration
 import Link from "next/link";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { SignOutDialog } from "@/components/madebycm/sign-out-dialog";
 
 import { UsersTable } from "@/app/_components/users-table";
 import { auth } from "@/backend/auth";
 import { api, HydrateClient } from "@/trpc/server";
-import { SignOutDialog } from "@/components/layout/sign-out-dialog";
 
 export default async function Home() {
   const session = await auth();
